@@ -9,16 +9,20 @@ public:
 	class Iterator;
 private:
 	template <class T>
+
 	class Node
 	{
 		friend class List<T>::Iterator;
 		friend class List<T>;
 		Node* next;
 		T m;
+
 	public:
 		Node(T m, Node* next = nullptr) : m(m), next(next) {}
 	};
+
 	Node<T>* Head;
+
 public:
 	class Iterator
 	{
@@ -26,10 +30,7 @@ public:
 		Node<T>* curr1;
 	public:
 		Iterator() :curr1(Head_it) {}
-		Iterator(Node<T>* Head) : Head_it(Head)
-		{
-			curr1 = Head;
-		}
+		Iterator(Node<T>* Head) : Head_it(Head) { curr1 = Head; }
 
 		T& operator*()
 		{

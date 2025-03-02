@@ -288,3 +288,50 @@ TEST(monom_test, mult_monom_by_polinom_correctly)
     EXPECT_EQ(pol.size(), 2);
     EXPECT_EQ(pol[0], test);
 }
+TEST(monom_test, can_add_monom_by_polinom)
+{
+    Monom m(2, 345);
+    Polinom p;
+    p = p + Monom(3, 222);
+    p = p + Monom(2, 221);
+
+    ASSERT_NO_THROW(Polinom pol = m + p);
+}
+TEST(monom_test, add_monom_by_polinom_correctly)
+{
+    Monom m(2, 345);
+    Polinom p;
+    p = p + Monom(3, 222);
+    p = p + Monom(2, 221);
+
+    Polinom pol = m + p;
+    Monom test(2, 221);
+
+    EXPECT_EQ(pol.size(), 3);
+    EXPECT_EQ(pol[2], m);
+    EXPECT_EQ(pol[0], test);
+}
+TEST(monom_test, can_sub_monom_by_polinom)
+{
+    Monom m(2, 345);
+    Polinom p;
+    p = p + Monom(3, 222);
+    p = p + Monom(2, 221);
+
+    ASSERT_NO_THROW(Polinom pol = m - p);
+}
+TEST(monom_test, sub_monom_by_polinom_correctly)
+{
+    Monom m(2, 345);
+    Polinom p;
+    p = p + Monom(3, 222);
+    p = p + Monom(2, 221);
+
+    Polinom pol = m - p;
+    Monom test0(-2, 221);
+    Monom test2(2, 345);
+
+    EXPECT_EQ(pol.size(), 3);
+    EXPECT_EQ(pol[2], test2);
+    EXPECT_EQ(pol[0], test0);
+}

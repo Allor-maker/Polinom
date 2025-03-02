@@ -1,7 +1,7 @@
 #include "polinom.h"
 
 //Monom
-
+Monom::Monom(int k = 0, int pow = 0) :k(k), pow(pow) {}
 Monom Monom::operator+(const Monom& b) const
 {
 	if (pow != b.pow) throw 0;
@@ -163,7 +163,7 @@ Polinom Polinom::operator+(const Monom& mon) const
 
 	return pol;
 }
-Polinom Polinom::operator-(const Monom& mon)
+Polinom Polinom::operator-(const Monom& mon) const
 {
 	Polinom curr(mon);
 	Polinom pol = operator-(curr);
@@ -272,4 +272,14 @@ std::ostream& operator<<(std::ostream& ostr, const Polinom& m)
 Polinom operator*(const Monom& mon, const Polinom& pol)
 {
 	return pol * mon;
+}
+Polinom operator+(const Monom& mon, const Polinom& pol)
+{
+	return pol + mon;
+}
+Polinom operator-(const Monom& mon, const Polinom& pol)
+{
+	Polinom p(mon);
+	Polinom pol_res = p - pol;
+	return pol_res;
 }

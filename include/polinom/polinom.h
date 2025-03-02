@@ -7,15 +7,16 @@ class Monom
 	int k = 0;
 	int pow;
 public:
-	Monom(int k = 0, int pow = 0) :k(k), pow(pow) {}
+	Monom(int k, int pow);
 
 	Monom operator+(const Monom& b) const;
 	Monom operator-(const Monom& b) const;
-	static std::vector<int> get_pows(int i);
 	Monom operator*(const Monom& b) const;
 	Monom operator*(const int a) const;
 	bool operator==(const Monom& b) const;
 	bool operator!=(const Monom& m) const;
+
+	static std::vector<int> get_pows(int i);
 	void print() const;
 	int get_value() const;
 	int get_k() const;
@@ -42,7 +43,7 @@ public:
 	Monom operator[](int i) const;
 	Polinom operator+(const Polinom& p) const;
 	Polinom operator+(const Monom& mon) const;
-	Polinom operator-(const Monom& mon);
+	Polinom operator-(const Monom& mon) const;
 	Polinom operator-(const Polinom& p) const;
 	Polinom operator*(const int a) const;
 	Polinom operator*(const Monom& m) const;
@@ -50,4 +51,6 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& ostr, const Polinom& m);
 	friend Polinom operator*(const Monom& mon, const Polinom& pol);
+	friend Polinom operator+(const Monom& mon, const Polinom& pol);
+	friend Polinom operator-(const Monom& mon, const Polinom& pol);
 };
